@@ -1,1 +1,2 @@
-# Step Cointing program with ADLX335_Accelerometer, detects walking and checks for motion consistency. 
+# Step Cointing program with ADLX335_Accelerometer, 
+detects walking activity and checks for motion consistency. 
