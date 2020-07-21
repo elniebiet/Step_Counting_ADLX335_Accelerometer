@@ -9,9 +9,6 @@
 const int xpin = A1;
 const int ypin = A2;
 const int zpin = A3;
-//const float thresholdVal = 3.5;
-
-//float threshold = 4.1; //160
 
 int trueSteps = 0;
 boolean presumedSteps[10] = {false};
@@ -23,7 +20,8 @@ int consistencyCounter = 0;
 boolean consistency[10] = {false};
 float currentAcc = 0.0;
 float previousAcc = 0.0;
-float differenceThreshold = 0.4;
+//float differenceThreshold = 0.4;
+float differenceThreshold = 0.38;
 
 int tenSteps[10] = {0};
 int16_t tenStepsCounter = 0;
@@ -103,7 +101,7 @@ void loop()
       trueSteps += realSteps;
       startedWalking = true;
 //      Serial.println("-----------------------------------------WALKING DETECTED .");
-      differenceThreshold += 0.1; //increase the threshold
+      differenceThreshold += 0.35; //increase the threshold
     } else {
       startedWalking = false; 
     }
@@ -120,8 +118,8 @@ void loop()
     //dont just increment, check consistency in next 10 steps
     checkingConsistency = true;
     consistency[0] = true;
-//    Serial.print("-----------------------------------STEPS: ");
-//    Serial.println(trueSteps);
+    Serial.print("-----------------------------------STEPS: ");
+    Serial.println(trueSteps);
   }
 
   //if started walking, checkingConsistency is true
@@ -147,7 +145,7 @@ void loop()
       } else {
           //not walking  
           startedWalking = false; 
-          differenceThreshold = differenceThreshold - 0.1; //decrease threshold to detect steps again
+          differenceThreshold = differenceThreshold - 0.35; //decrease threshold to detect steps again
           presumedFirstStep = false; //wait to detect step again
       }
       checkingConsistency = false; //stop checking consistency
